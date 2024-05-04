@@ -1,0 +1,5 @@
+npx playwright codegen \
+	--browser=chromium \
+	--geolocation='{"latitude":35.6769,"longitude":139.6540}' \
+	https://example.com
+	

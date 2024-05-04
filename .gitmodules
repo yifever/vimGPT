@@ -1,0 +1,3 @@
+[submodule "vimium"]
+	path = vimium
+	url = https://github.com/yifever/vimium
