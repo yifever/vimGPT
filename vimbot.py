@@ -35,7 +35,7 @@ class Vimbot:
             )
         )
         self.page = self.context.new_page()
-        self.page.set_viewport_size({"width": 1080, "height": 720})
+        self.page.set_viewport_size({"width": 1080, "height": 1080})
         self.page.on("console", lambda msg: self.process_console_log(msg))
         self.context.add_cookies([
             {
@@ -74,6 +74,10 @@ class Vimbot:
             self.type(action["type"])
         if "navigate" in action:
             self.navigate(action["navigate"])
+        if "scroll_up" in action:
+            self.scroll_up()
+        if "scroll_down" in action:
+            self.scroll_down()
         elif "type" in action:
             self.type(action["type"])
         elif "click" in action:
@@ -89,6 +93,16 @@ class Vimbot:
 
     def click(self, text):
         self.page.keyboard.type(text)
+
+    def scroll_up(self):
+        self.page.keyboard.down('k')
+        self.page.wait_for_timeout(1500)
+        self.page.keyboard.up('k')
+
+    def scroll_down(self):
+        self.page.keyboard.down('j')
+        self.page.wait_for_timeout(1500)
+        self.page.keyboard.up('j')
 
     def capture(self):
         # capture a screenshot with vim bindings on the screen
